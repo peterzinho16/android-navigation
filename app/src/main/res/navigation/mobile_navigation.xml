@@ -33,7 +33,7 @@
 
         <action
             android:id="@+id/next_action"
-            app:destination="@+id/next_action"
+            app:destination="@+id/flow_step_one_dest"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -41,7 +41,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/next_action"
+        android:id="@+id/flow_step_one_dest"
         android:name="com.example.android.codelabs.navigation.FlowStepFragment"
         tools:layout="@layout/flow_step_one_fragment">
         <argument
@@ -54,7 +54,7 @@
             android:defaultValue="1"/>
 
         <action
-            android:id="@+id/next_action"
+            android:id="@+id/flow_step_two_dest"
             app:destination="@+id/flow_step_two_dest">
         </action>
     </fragment>
@@ -70,7 +70,7 @@
             android:defaultValue="2"/>
 
         <action
-            android:id="@+id/next_action"
+            android:id="@+id/flow_step_two_dest"
             app:popUpTo="@id/home_dest">
         </action>
     </fragment>

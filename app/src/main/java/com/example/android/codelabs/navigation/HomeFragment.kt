@@ -20,7 +20,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
@@ -54,17 +53,17 @@ class HomeFragment : Fragment() {
         //        Navigation.createNavigateOnClickListener(R.id.next_action, null)
         //)
 
-        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
-            val flowStepNumberArg = 1
-            val action = HomeFragmentDirections.nextAction(flowStepNumberArg, 123)
-            findNavController().navigate(action)
-        }
+        //view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
+        //    val flowStepNumberArg = 1
+        //    val action = HomeFragmentDirections.nextAction(flowStepNumberArg, 123)
+        //    findNavController().navigate(action)
+        //}
 
         //TODO STEP 5 - Set an OnClickListener, using Navigation.createNavigateOnClickListener()
-//        val button = view.findViewById<Button>(R.id.navigate_destination_button)
-//        button?.setOnClickListener {
-//            findNavController().navigate(R.id.flow_step_one_dest, null)
-//        }
+        val button = view.findViewById<Button>(R.id.navigate_destination_button)
+        button?.setOnClickListener {
+            findNavController().navigate(R.id.next_action, null)
+        }
         //TODO END STEP 5
 
         //TODO STEP 6 - Set NavOptions

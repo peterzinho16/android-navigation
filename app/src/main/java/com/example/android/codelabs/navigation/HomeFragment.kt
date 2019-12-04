@@ -22,6 +22,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import com.google.android.material.navigation.NavigationView
 
 /**
  * Fragment used to show how to navigate to another destination
@@ -64,6 +65,7 @@ class HomeFragment : Fragment() {
         button?.setOnClickListener {
             findNavController().navigate(R.id.next_action, null)
         }
+
         //TODO END STEP 5
 
         //TODO STEP 6 - Set NavOptions

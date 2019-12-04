@@ -14,6 +14,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
     app:startDestination="@id/home_dest">
     <fragment
         android:id="@+id/home_dest"
@@ -94,7 +95,7 @@
             android:defaultValue="Android!"/>
         <!-- TODO STEP 11.1 - Add a deep link to www.example.com/{myarg}/ -->
 
-        <!--<deepLink app:uri="www.example.com/{myarg}" />-->
+        <deepLink app:uri="www.example.com/{myarg}" />
 
         <!-- TODO END STEP 11.1 -->
     </fragment>
@@ -103,4 +104,77 @@
         android:name="com.example.android.codelabs.navigation.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/settings_fragment" />
+    <fragment
+        android:id="@+id/shopping_dest"
+        android:name="com.example.android.codelabs.navigation.ShoppingFragment"
+        android:label="shopping_fragment"
+        tools:layout="@layout/shopping_fragment" />
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.example.android.codelabs.navigation.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_login_fragment_to_register_fragment"
+            app:destination="@id/registration_graph"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_login_seller_fragment_to_register_fragment"
+            app:destination="@id/nav_seller_graph"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_login_pos_fragment_to_register_fragment"
+            app:destination="@id/home_in_pos_navigation"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left" />
+    </fragment>
+
+    <include app:graph="@navigation/mobile_seller_navigation" android:id="@+id/nav_seller_graph" />
+
+<!--<navigation android:id="@+id/home_in_seller_navigation"
+    app:startDestination="@id/home_seller_fragment">
+
+    <fragment android:id="@+id/home_seller_fragment"
+        android:name="com.example.android.codelabs.navigation.HomeSellerFragment"
+        android:label="Home Seller Fragment"
+        tools:layout="@layout/home_seller_fragment">
+    </fragment>
+
+</navigation> -->
+
+    <navigation android:id="@+id/home_in_pos_navigation"
+        app:startDestination="@id/home_pos_fragment">
+
+        <fragment android:id="@+id/home_pos_fragment"
+            android:name="com.example.android.codelabs.navigation.HomePosFragment"
+            android:label="Home Pos Fragment"
+            tools:layout="@layout/home_pos_fragment">
+        </fragment>
+
+    </navigation>
+
+    <navigation android:id="@+id/registration_graph"
+        app:startDestination="@id/enter_user_profile_fragment">
+
+        <fragment android:id="@+id/enter_user_profile_fragment"
+            android:name="com.example.android.codelabs.navigation.EnterProfileDataFragment"
+            android:label="Enter Profile Data"
+            tools:layout="@layout/enter_profile_data_fragment">
+
+            <action android:id="@+id/move_to_choose_user_password"
+                app:destination="@id/choose_user_password_fragment" />
+
+        </fragment>
+
+        <fragment android:id="@+id/choose_user_password_fragment"
+            android:name="com.example.android.codelabs.navigation.ChooseUserPasswordFragment"
+            android:label="Choose User + Password"
+            tools:layout="@layout/choose_user_password_fragment" />
+
+    </navigation>
 </navigation>

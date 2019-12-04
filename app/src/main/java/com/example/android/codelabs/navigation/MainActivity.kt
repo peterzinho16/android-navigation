@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -28,16 +29,17 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.navigation_activity.*
 
 /**
  * A simple activity demonstrating use of a NavHostFragment with a navigation drawer.
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration : AppBarConfiguration
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.navigation_activity)
@@ -76,6 +78,14 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Resources.NotFoundException) {
                 Integer.toString(destination.id)
             }
+            if (destination.id == R.id.flow_step_one_dest) {
+                bottom_nav_view.menu.findItem(R.id.home_dest).isVisible = false
+                bottom_nav_view.visibility = View.INVISIBLE
+            } else {
+                bottom_nav_view.menu.findItem(R.id.home_dest)?.isVisible = true
+                bottom_nav_view.visibility = View.VISIBLE
+            }
+
 
             Toast.makeText(this@MainActivity, "Navigated to $dest",
                     Toast.LENGTH_SHORT).show()

@@ -16,6 +16,7 @@
 
 package com.example.android.codelabs.navigation
 
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
@@ -29,7 +30,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
         // Set up Action Bar
         val navController = host.navController
-
         //appBarConfiguration = AppBarConfiguration(navController.graph)
 
         // TODO STEP 9.5 - Create an AppBarConfiguration with the correct top-level destinations
@@ -76,21 +75,25 @@ class MainActivity : AppCompatActivity() {
             val dest: String = try {
                 resources.getResourceName(destination.id)
             } catch (e: Resources.NotFoundException) {
-                Integer.toString(destination.id)
+                destination.id.toString()
             }
-            if (destination.id == R.id.flow_step_one_dest) {
-                bottom_nav_view.menu.findItem(R.id.home_dest).isVisible = false
-                bottom_nav_view.visibility = View.INVISIBLE
-            } else {
-                bottom_nav_view.menu.findItem(R.id.home_dest)?.isVisible = true
-                bottom_nav_view.visibility = View.VISIBLE
-            }
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
+            } else {
+                if (destination.id == R.id.flow_step_one_dest) {
+                    bottom_nav_view.menu.findItem(R.id.home_dest).isVisible = false
+                    bottom_nav_view?.visibility = View.INVISIBLE
+                } else {
+                    bottom_nav_view.menu.findItem(R.id.home_dest).isVisible = true
+                    bottom_nav_view?.visibility = View.VISIBLE
+                }
+            }
 
             Toast.makeText(this@MainActivity, "Navigated to $dest",
                     Toast.LENGTH_SHORT).show()
             Log.d("NavigationActivity", "Navigated to $dest")
         }
+
     }
 
     private fun setupBottomNavMenu(navController: NavController) {
